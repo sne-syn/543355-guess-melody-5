@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PropTypes from "prop-types";
-import ResultFailPage from './../resultFailPage/resultFailPage';
-import LoginPage from './../loginPage/loginPage';
-import GameArtistPage from './../gameArtistPage/gameArtistPage';
-import GameGenrePage from './../gameGenrePage/gameGenrePage';
-import ResultSuccessPage from './../resultSuccessPage/resultSuccessPage';
-import WelcomePage from './../welcomePage/welcomePage';
+import ResultFailPage from './../result-fail-page/result-fail-page';
+import LoginPage from './../login-page/login-page';
+import GameArtistPage from '../game-artist-page/game-artist-page';
+import GameGenrePage from './../game-genre-page/game-genre-page';
+import ResultSuccessPage from './../result-success-page/result-success-page';
+import WelcomePage from './../welcome-page/welcome-page';
 
 const App = (props) => {
   const {errorCount} = props;
