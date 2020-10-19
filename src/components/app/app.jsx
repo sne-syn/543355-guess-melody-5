@@ -7,32 +7,59 @@ import GameArtistPage from '../game-artist-page/game-artist-page';
 import GameGenrePage from './../game-genre-page/game-genre-page';
 import ResultSuccessPage from './../result-success-page/result-success-page';
 import WelcomePage from './../welcome-page/welcome-page';
+import GamePage from "../game-page/game-page";
 
 const App = (props) => {
-  const {errorCount} = props;
+  const {errorsCount, questions} = props;
+  const [firstQuestion, secondQuestion] = questions;
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <WelcomePage errorCount={errorCount} /></Route>
-        <Route exact path="/lose">
-          <ResultFailPage /></Route>
-        <Route exact path="/login">
-          <LoginPage /></Route>
+        <Route exact
+          path="/"
+          render={({history}) => (
+            <WelcomePage
+              onPlayButtonClick={() => history.push(`/game`)}
+              errorsCount={errorsCount}
+            />
+          )}
+        />
         <Route exact path="/dev-artist">
-          <GameArtistPage /></Route>
+          <GameArtistPage
+            question={secondQuestion}
+            onAnswer={() => {}}
+          />
+        </Route>
         <Route exact path="/dev-genre">
-          <GameGenrePage /></Route>
+          <GameGenrePage
+            question={firstQuestion}
+            onAnswer={() => {}}
+          />
+        </Route>
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
         <Route exact path="/result">
-          <ResultSuccessPage /></Route>
+          <ResultSuccessPage />
+        </Route>
+        <Route exact path="/lose">
+          <ResultFailPage />
+        </Route>
+        <Route exact path="/game">
+          <GamePage
+            errorsCount={errorsCount}
+            questions={questions}
+          />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  errorCount: PropTypes.number.isRequired
+  errorsCount: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default App;
